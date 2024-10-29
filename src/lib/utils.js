@@ -1,7 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import { ERROR_MESSAGE } from './constants';
 
-export const readLineAsync = async (message) =>
+export const readLineAsync = (message) =>
   MissionUtils.Console.readLineAsync(message);
 
 export const print = (message) => {
