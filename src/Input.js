@@ -16,9 +16,16 @@ class Input {
   #carArray;
   #tryCount;
 
-  async getUserInput() {
+  async getCarsInput() {
     try {
       this.#rawCars = await readLineAsync(INPUT_MESSAGE.CAR_NAMES);
+    } catch (e) {
+      throw new Error(ERROR_MESSAGE.USER_INPUT);
+    }
+  }
+
+  async getTryCountInput() {
+    try {
       this.#rawTryCount = await readLineAsync(INPUT_MESSAGE.TRY_COUNT);
     } catch (e) {
       throw new Error(ERROR_MESSAGE.USER_INPUT);

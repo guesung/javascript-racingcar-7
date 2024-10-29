@@ -18,7 +18,8 @@ class App {
   }
 
   async #getInput() {
-    await this.#input.getUserInput();
+    await this.#input.getCarsInput();
+    await this.#input.getTryCountInput();
     this.#input.parseCars();
     this.#input.parseTryCount();
   }
