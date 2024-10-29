@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { ERROR_MESSAGE } from './constants';
+import { ERROR_MESSAGE } from './constants.js';
 
 export const readLineAsync = (message) =>
   MissionUtils.Console.readLineAsync(message);
@@ -13,10 +13,8 @@ export const pickNumberInRange = (start, end) =>
 
 export const splitIntoArray = (str, separator) => str.split(separator);
 
-export const getIsNumeric = (num) => {
-  if (typeof num !== 'number') return false;
-  return !Number.isNaN(num) && !Number.isNaN(parseFloat(num));
-};
+export const getIsNumeric = (num) =>
+  typeof num === 'number' && !Number.isNaN(Number(num));
 
 export const validatePositiveInteger = (num) => {
   const isNumeric = getIsNumeric(num);
