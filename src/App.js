@@ -8,12 +8,6 @@ class App {
   #tryCount;
   #winnerCarArray;
 
-  constructor() {
-    this.#carArray = [];
-    this.#tryCount = 0;
-    this.#winnerCarArray = [];
-  }
-
   async run() {
     await this.#getInput();
     this.#runRace();
