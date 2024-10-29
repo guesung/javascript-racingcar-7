@@ -9,19 +9,13 @@ import {
 
 class Race {
   static #MIN_RANDOM = 0;
-
   static #MAX_RANDOM = 9;
-
   static #MOVE_FORWARD_THRESHOLD = 4;
-
   static #TRACE_CHARACTER = '-';
-
   static #FORWARD_STEP = 1;
 
   #carArray;
-
   #tryCount;
-
   #carTraceMap;
 
   constructor(carArray, tryCount) {

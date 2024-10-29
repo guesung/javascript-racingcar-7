@@ -8,11 +8,9 @@ import {
 
 class Input {
   static #CAR_NAME_REGEXP = /^\w{1,5}$/;
-
   static #SEPARATOR = ',';
 
   #rawCars;
-
   #rawTryCount;
 
   constructor() {

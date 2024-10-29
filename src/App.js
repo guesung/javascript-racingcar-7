@@ -5,9 +5,7 @@ import Race from './Race.js';
 
 class App {
   #carArray;
-
   #tryCount;
-
   #winnerCarArray;
 
   constructor() {
