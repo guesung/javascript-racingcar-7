@@ -12,7 +12,7 @@ class App {
 
   constructor() {
     this.#carArray = [];
-    this.#tryCount = [];
+    this.#tryCount = 0;
     this.#winnerCarArray = [];
   }
 
