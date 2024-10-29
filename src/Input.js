@@ -1,10 +1,4 @@
-import {
-  ERROR_MESSAGE_CAR_NAME_DUPLICATION,
-  ERROR_MESSAGE_CAR_NAME_INVALID,
-  ERROR_MESSAGE_USER_INPUT,
-  INPUT_MESSAGE_CAR_NAMES,
-  INPUT_MESSAGE_TRY_COUNT,
-} from './lib/constants.js';
+import { INPUT_MESSAGE, ERROR_MESSAGE } from './lib/constants.js';
 import {
   checkArrayAllUnique,
   readLineAsync,
@@ -28,10 +22,10 @@ class Input {
 
   async getUserInput() {
     try {
-      this.#rawCars = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
-      this.#rawTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
+      this.#rawCars = await readLineAsync(INPUT_MESSAGE.CAR_NAMES);
+      this.#rawTryCount = await readLineAsync(INPUT_MESSAGE.TRY_COUNT);
     } catch (e) {
-      throw new Error(ERROR_MESSAGE_USER_INPUT);
+      throw new Error(ERROR_MESSAGE.USER_INPUT);
     }
   }
 
@@ -51,10 +45,10 @@ class Input {
     const isAllCarValid = carArray.every((car) =>
       Input.#CAR_NAME_REGEXP.test(car),
     );
-    if (!isAllCarValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
+    if (!isAllCarValid) throw new Error(ERROR_MESSAGE.CAR_NAME_INVALID);
 
     const isAllCarUnique = checkArrayAllUnique(carArray);
-    if (!isAllCarUnique) throw new Error(ERROR_MESSAGE_CAR_NAME_DUPLICATION);
+    if (!isAllCarUnique) throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATION);
   }
 }
 

@@ -1,9 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import {
-  ERROR_MESSAGE_NOT_INTEGER,
-  ERROR_MESSAGE_NOT_NUMBER,
-  ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
-} from './constants.js';
+import { ERROR_MESSAGE } from './constants';
 
 export const readLineAsync = async (message) =>
   MissionUtils.Console.readLineAsync(message);
@@ -24,13 +20,13 @@ export const getIsNumeric = (num) => {
 
 export const validatePositiveInteger = (num) => {
   const isNumeric = getIsNumeric(num);
-  if (!isNumeric) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
+  if (!isNumeric) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
 
   const isPositiveNumeric = num > 0;
-  if (!isPositiveNumeric) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
+  if (!isPositiveNumeric) throw new Error(ERROR_MESSAGE.NOT_POSITIVE_POSITIVE);
 
   const isInteger = Number.isInteger(num);
-  if (!isInteger) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
+  if (!isInteger) throw new Error(ERROR_MESSAGE.NOT_INTEGER);
 };
 
 export const getMapFilledZero = (array) =>

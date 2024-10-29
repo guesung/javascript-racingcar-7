@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGE_WINNER } from './lib/constants.js';
+import { OUTPUT_MESSAGE } from './lib/constants.js';
 import { print } from './lib/utils.js';
 import Input from './Input.js';
 import Race from './Race.js';
@@ -37,7 +37,7 @@ class App {
   }
 
   #printOutput() {
-    print(`${OUTPUT_MESSAGE_WINNER}${this.#winnerCarArray.join(', ')}`);
+    print(`${OUTPUT_MESSAGE.WINNER}${this.#winnerCarArray.join(', ')}`);
   }
 }
 

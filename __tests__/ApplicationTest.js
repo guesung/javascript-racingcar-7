@@ -1,12 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
-import {
-  ERROR_MESSAGE_CAR_NAME_DUPLICATION,
-  ERROR_MESSAGE_CAR_NAME_INVALID,
-  ERROR_MESSAGE_NOT_INTEGER,
-  ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
-  OUTPUT_MESSAGE_WINNER,
-} from '../src/lib/constants.js';
+import { ERROR_MESSAGE, OUTPUT_MESSAGE } from '../src/lib/constants.js';
 
 const MOVING_FORWARD = 4;
 const STOP = 3;
@@ -26,7 +20,7 @@ const testCaseArrayOfFunctionalTest = [
       'woni : ',
       'pobi : -----',
       'woni : ',
-      `${OUTPUT_MESSAGE_WINNER}pobi`,
+      `${OUTPUT_MESSAGE.WINNER}pobi`,
     ],
     randomDataArray: [
       MOVING_FORWARD,
@@ -70,7 +64,7 @@ const testCaseArrayOfFunctionalTest = [
       'gue : -',
       'hyun : -',
       'hyek : -',
-      `${OUTPUT_MESSAGE_WINNER}pobi, woni, gue, hyun, hyek`,
+      `${OUTPUT_MESSAGE.WINNER}pobi, woni, gue, hyun, hyek`,
     ],
     randomDataArray: [
       MOVING_FORWARD,
@@ -106,22 +100,22 @@ const testCaseExceptionArrayOfCarNameArray = [
   {
     title: '자동차 이름이 5글자 초과인 경우',
     inputs: ['pobi,javaji'],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+    errorMessage: ERROR_MESSAGE.CAR_NAME_INVALID,
   },
   {
     title: '자동차 이름이 1글자 미만인 경우',
     inputs: ['pobi,'],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+    errorMessage: ERROR_MESSAGE.CAR_NAME_INVALID,
   },
   {
     title: '자동차 이름이 알파벳, 숫자 혹은 언더바(`_`)가 아닌 경우',
     inputs: ['pobi,$gue'],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+    errorMessage: ERROR_MESSAGE.CAR_NAME_INVALID,
   },
   {
     title: '자동차 이름이 중복되는 경우',
     inputs: ['pobi,pobi', 1],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_DUPLICATION,
+    errorMessage: ERROR_MESSAGE.CAR_NAME_DUPLICATION,
   },
 ];
 
@@ -129,12 +123,12 @@ const testCaseExceptionArrayOfTryCount = [
   {
     title: '양수가 아닌 경우',
     inputs: ['pobi,java', 0],
-    errorMessage: ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
+    errorMessage: ERROR_MESSAGE.NOT_POSITIVE_POSITIVE,
   },
   {
     title: '정수가 아닌 경우',
     inputs: ['pobi,java', 5.5],
-    errorMessage: ERROR_MESSAGE_NOT_INTEGER,
+    errorMessage: ERROR_MESSAGE.NOT_INTEGER,
   },
 ];
 
@@ -150,7 +144,7 @@ describe('자동차 경주', () => {
         const app = new App();
         await app.run();
 
-        logs.forEach(log => {
+        logs.forEach((log) => {
           expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
         });
       },

@@ -1,8 +1,4 @@
-import {
-  ERROR_MESSAGE_NOT_INTEGER,
-  ERROR_MESSAGE_NOT_NUMBER,
-  ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
-} from '../src/lib/constants';
+import { ERROR_MESSAGE } from '../src/lib/constants';
 import {
   checkArrayAllUnique,
   getIsNumeric,
@@ -37,17 +33,17 @@ describe('유틸 함수', () => {
     test('숫자가 아닐 경우 에러를 출력한다.', async () => {
       await expect(() => {
         validatePositiveInteger('a');
-      }).toThrow(ERROR_MESSAGE_NOT_NUMBER);
+      }).toThrow(ERROR_MESSAGE.NOT_NUMBER);
     });
     test('양수가 아닐 경우 에러를 출력한다.', async () => {
       await expect(() => {
         validatePositiveInteger(0);
-      }).toThrow(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
+      }).toThrow(ERROR_MESSAGE.NOT_POSITIVE_POSITIVE);
     });
     test('정수가 아닐 경우 에러를 출력한다.', async () => {
       await expect(() => {
         validatePositiveInteger(1.1);
-      }).toThrow(ERROR_MESSAGE_NOT_INTEGER);
+      }).toThrow(ERROR_MESSAGE.NOT_INTEGER);
     });
     test('양의 정수인 경우 아무것도 출력하지 않는다.', () => {
       expect(validatePositiveInteger(2)).toBeUndefined();
