@@ -4,9 +4,12 @@ import Input from './Input.js';
 import Race from './Race.js';
 
 class App {
-  #carArray;
-  #tryCount;
+  #input;
   #winnerCarArray;
+
+  constructor() {
+    this.#input = new Input();
+  }
 
   async run() {
     await this.#getInput();
@@ -15,15 +18,13 @@ class App {
   }
 
   async #getInput() {
-    const input = new Input();
-
-    await input.getUserInput();
-    this.#carArray = input.parseCars();
-    this.#tryCount = input.parseTryCount();
+    await this.#input.getUserInput();
+    this.#input.parseCars();
+    this.#input.parseTryCount();
   }
 
   #runRace() {
-    const race = new Race(this.#carArray, this.#tryCount);
+    const race = new Race(this.#input.carArray, this.#input.tryCount);
 
     this.#winnerCarArray = race.run();
   }

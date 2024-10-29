@@ -13,10 +13,8 @@ class Input {
   #rawCars;
   #rawTryCount;
 
-  constructor() {
-    this.#rawCars = '';
-    this.#rawTryCount = '';
-  }
+  #carArray;
+  #tryCount;
 
   async getUserInput() {
     try {
@@ -28,25 +26,31 @@ class Input {
   }
 
   parseCars() {
-    const carArray = splitIntoArray(this.#rawCars, Input.#SEPARATOR);
-    Input.#validateCarArray(carArray);
-    return carArray;
+    this.#carArray = splitIntoArray(this.#rawCars, Input.#SEPARATOR);
+    this.#validateCarArray(this.#carArray);
   }
 
   parseTryCount() {
-    const tryCount = +this.#rawTryCount;
-    validatePositiveInteger(tryCount);
-    return tryCount;
+    this.#tryCount = +this.#rawTryCount;
+    validatePositiveInteger(this.#tryCount);
   }
 
-  static #validateCarArray(carArray) {
-    const isAllCarValid = carArray.every((car) =>
+  #validateCarArray() {
+    const isAllCarValid = this.#carArray.every((car) =>
       Input.#CAR_NAME_REGEXP.test(car),
     );
     if (!isAllCarValid) throw new Error(ERROR_MESSAGE.CAR_NAME_INVALID);
 
-    const isAllCarUnique = checkArrayAllUnique(carArray);
+    const isAllCarUnique = checkArrayAllUnique(this.#carArray);
     if (!isAllCarUnique) throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATION);
+  }
+
+  get carArray() {
+    return this.#carArray;
+  }
+
+  get tryCount() {
+    return this.#tryCount;
   }
 }
 
