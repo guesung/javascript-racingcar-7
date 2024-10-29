@@ -28,7 +28,7 @@ export const validatePositiveInteger = (num) => {
 };
 
 export const getMapFilledZero = (array) =>
-  array.reduce((map, item) => map.set(item, 0), new Map());
+  new Map(array.map((item) => [item, 0]));
 
 export const getRepeatedString = (str, repeatNum) => str.repeat(repeatNum);
 
