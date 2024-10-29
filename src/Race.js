@@ -39,7 +39,7 @@ class Race {
   }
 
   #runOneRound() {
-    this.#carArray.forEach(car => {
+    this.#carArray.forEach((car) => {
       const newPosition = Race.#getNewPosition(this.#carTraceMap.get(car));
       this.#carTraceMap.set(car, newPosition);
       Race.#printCarPosition(car, newPosition);

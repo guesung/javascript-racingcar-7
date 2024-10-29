@@ -5,10 +5,10 @@ import {
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
 } from './constants.js';
 
-export const readLineAsync = async message =>
+export const readLineAsync = async (message) =>
   MissionUtils.Console.readLineAsync(message);
 
-export const print = message => {
+export const print = (message) => {
   MissionUtils.Console.print(message);
 };
 
@@ -17,12 +17,12 @@ export const pickNumberInRange = (start, end) =>
 
 export const splitIntoArray = (str, separator) => str.split(separator);
 
-export const getIsNumeric = num => {
+export const getIsNumeric = (num) => {
   if (typeof num !== 'number') return false;
   return !Number.isNaN(num) && !Number.isNaN(parseFloat(num));
 };
 
-export const validatePositiveInteger = num => {
+export const validatePositiveInteger = (num) => {
   const isNumeric = getIsNumeric(num);
   if (!isNumeric) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
 
@@ -33,17 +33,17 @@ export const validatePositiveInteger = num => {
   if (!isInteger) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
 
-export const getMapFilledZero = array =>
+export const getMapFilledZero = (array) =>
   array.reduce((map, item) => map.set(item, 0), new Map());
 
 export const getRepeatedString = (str, repeatNum) => str.repeat(repeatNum);
 
-export const getMaxValueInMap = map => Math.max(...map.values());
+export const getMaxValueInMap = (map) => Math.max(...map.values());
 
 export const getKeyArrayHasTargetValueInMap = (map, targetValue) =>
   Array.from(map.entries())
     .filter(([_, value]) => value === targetValue)
     .map(([key]) => key);
 
-export const checkArrayAllUnique = array =>
+export const checkArrayAllUnique = (array) =>
   array.length === [...new Set(array)].length;

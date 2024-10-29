@@ -48,7 +48,7 @@ class Input {
   }
 
   static #validateCarArray(carArray) {
-    const isAllCarValid = carArray.every(car =>
+    const isAllCarValid = carArray.every((car) =>
       Input.#CAR_NAME_REGEXP.test(car),
     );
     if (!isAllCarValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
