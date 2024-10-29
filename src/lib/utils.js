@@ -23,7 +23,7 @@ export const validatePositiveInteger = (num) => {
   if (!isNumeric) throw new Error(ERROR_MESSAGE.NOT_NUMBER);
 
   const isPositiveNumeric = num > 0;
-  if (!isPositiveNumeric) throw new Error(ERROR_MESSAGE.NOT_POSITIVE_POSITIVE);
+  if (!isPositiveNumeric) throw new Error(ERROR_MESSAGE.NOT_POSITIVE);
 
   const isInteger = Number.isInteger(num);
   if (!isInteger) throw new Error(ERROR_MESSAGE.NOT_INTEGER);

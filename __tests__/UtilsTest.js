@@ -38,7 +38,7 @@ describe('유틸 함수', () => {
     test('양수가 아닐 경우 에러를 출력한다.', async () => {
       await expect(() => {
         validatePositiveInteger(0);
-      }).toThrow(ERROR_MESSAGE.NOT_POSITIVE_POSITIVE);
+      }).toThrow(ERROR_MESSAGE.NOT_POSITIVE);
     });
     test('정수가 아닐 경우 에러를 출력한다.', async () => {
       await expect(() => {
