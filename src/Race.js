@@ -2,16 +2,14 @@ import {
   getKeyArrayHasTargetValueInMap,
   getMapFilledZero,
   getMaxValueInMap,
-  getRepeatedString,
   pickNumberInRange,
-  print,
 } from './lib/utils.js';
+import OutputManager from './OutputManager.js';
 
 class Race {
   static #MIN_RANDOM = 0;
   static #MAX_RANDOM = 9;
   static #MOVE_FORWARD_THRESHOLD = 4;
-  static #TRACE_CHARACTER = '-';
   static #FORWARD_STEP = 1;
 
   #carArray;
@@ -36,7 +34,7 @@ class Race {
     this.#carArray.forEach((car) => {
       const newPosition = Race.#getNewPosition(this.#carTraceMap.get(car));
       this.#carTraceMap.set(car, newPosition);
-      Race.#printCarPosition(car, newPosition);
+      OutputManager.printCarPosition(car, newPosition);
     });
   }
 
@@ -50,15 +48,6 @@ class Race {
 
   static #getIsMoveForward(num) {
     return num >= Race.#MOVE_FORWARD_THRESHOLD;
-  }
-
-  static #printCarPosition(car, position) {
-    const repeatedTraceChracter = getRepeatedString(
-      Race.#TRACE_CHARACTER,
-      position,
-    );
-
-    print(`${car} : ${repeatedTraceChracter}`);
   }
 
   get #winnerCarArray() {

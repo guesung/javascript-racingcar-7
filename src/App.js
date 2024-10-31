@@ -1,6 +1,6 @@
-import { OUTPUT_MESSAGE } from './lib/constants.js';
-import { print } from './lib/utils.js';
 import InputManager from './InputManager.js';
+import OutputManager from './OutputManager.js';
+
 import Race from './Race.js';
 
 class App {
@@ -12,11 +12,7 @@ class App {
 
     const winnerCarArray = race.run();
 
-    this.#printOutput(winnerCarArray);
-  }
-
-  #printOutput(winnerCarArray) {
-    print(`${OUTPUT_MESSAGE.WINNER}${winnerCarArray.join(', ')}`);
+    OutputManager.printWinner(winnerCarArray);
   }
 }
 
