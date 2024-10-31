@@ -12,7 +12,7 @@ class Race {
       this.#runOneRound();
     }
 
-    return this.#getWinnerCarArray();
+    return this.#winnerCarArray;
   }
 
   #runOneRound() {
@@ -22,8 +22,8 @@ class Race {
     });
   }
 
-  #getWinnerCarArray() {
-    const maxPosition = this.#getmaxPosition();
+  get #winnerCarArray() {
+    const maxPosition = this.#maxPosition;
 
     const winnerCarArray = this.#carModelArray
       .filter((carModel) => carModel.position === maxPosition)
@@ -32,7 +32,7 @@ class Race {
     return winnerCarArray;
   }
 
-  #getmaxPosition() {
+  get #maxPosition() {
     return Math.max(
       ...this.#carModelArray.map((carModel) => carModel.position),
     );
