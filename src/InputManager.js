@@ -18,6 +18,14 @@ class Input {
     return carArray;
   }
 
+  static async getTryCountInput() {
+    const rawTryCount = await readLineAsync(INPUT_MESSAGE.TRY_COUNT);
+    const tryCount = this.#parseTryCount(rawTryCount);
+    validatePositiveInteger(tryCount);
+
+    return tryCount;
+  }
+
   static #parseCars(rawCars) {
     const carArray = splitIntoArray(rawCars, Input.#SEPARATOR);
     return carArray;
@@ -32,14 +40,6 @@ class Input {
 
     const isAllCarUnique = checkArrayAllUnique(carArray);
     if (!isAllCarUnique) throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATION);
-  }
-
-  static async getTryCountInput() {
-    const rawTryCount = await readLineAsync(INPUT_MESSAGE.TRY_COUNT);
-    const tryCount = this.#parseTryCount(rawTryCount);
-    validatePositiveInteger(tryCount);
-
-    return tryCount;
   }
 
   static #parseTryCount(rawTryCount) {

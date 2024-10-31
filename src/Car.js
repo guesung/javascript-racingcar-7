@@ -15,10 +15,6 @@ class Car {
     this.#name = name;
   }
 
-  get position() {
-    return this.#position;
-  }
-
   moveForward() {
     const randomNum = pickNumberInRange(Car.#MIN_RANDOM, Car.#MAX_RANDOM);
     const isMoveForward = randomNum >= Car.#MOVE_FORWARD_THRESHOLD;
@@ -32,6 +28,10 @@ class Car {
 
   get name() {
     return this.#name;
+  }
+
+  get position() {
+    return this.#position;
   }
 }
 
