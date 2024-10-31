@@ -123,7 +123,7 @@ const testCaseExceptionArrayOfTryCount = [
   {
     title: '양수가 아닌 경우',
     inputs: ['pobi,java', 0],
-    errorMessage: ERROR_MESSAGE.NOT_POSITIVE_POSITIVE,
+    errorMessage: ERROR_MESSAGE.NOT_POSITIVE,
   },
   {
     title: '정수가 아닌 경우',
