@@ -8,9 +8,9 @@ class App {
     const carArray = await InputManager.getCarsInput();
     const tryCount = await InputManager.getTryCountInput();
 
-    const race = new Race(carArray, tryCount);
+    const race = new Race(carArray);
 
-    const winnerCarArray = race.run();
+    const winnerCarArray = race.run(tryCount);
 
     OutputManager.printWinner(winnerCarArray);
   }

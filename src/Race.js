@@ -1,62 +1,41 @@
-import {
-  getKeyArrayHasTargetValueInMap,
-  getMapFilledZero,
-  getMaxValueInMap,
-  pickNumberInRange,
-} from './lib/utils.js';
-import OutputManager from './OutputManager.js';
+import Car from './Car.js';
 
 class Race {
-  static #MIN_RANDOM = 0;
-  static #MAX_RANDOM = 9;
-  static #MOVE_FORWARD_THRESHOLD = 4;
-  static #FORWARD_STEP = 1;
+  #carModelArray;
 
-  #carArray;
-  #tryCount;
-  #carTraceMap;
-
-  constructor(carArray, tryCount) {
-    this.#carArray = carArray;
-    this.#tryCount = tryCount;
-
-    this.#carTraceMap = getMapFilledZero(this.#carArray);
+  constructor(carArray) {
+    this.#carModelArray = carArray.map((car) => new Car(car));
   }
 
-  run() {
-    for (let round = 0; round < this.#tryCount; round += 1) {
+  run(tryCount) {
+    for (let round = 0; round < tryCount; round += 1) {
       this.#runOneRound();
     }
-    return this.#winnerCarArray;
+
+    return this.#getWinnerCarArray();
   }
 
   #runOneRound() {
-    this.#carArray.forEach((car) => {
-      const newPosition = Race.#getNewPosition(this.#carTraceMap.get(car));
-      this.#carTraceMap.set(car, newPosition);
-      OutputManager.printCarPosition(car, newPosition);
+    this.#carModelArray.forEach((carModel) => {
+      carModel.moveForward();
+      carModel.printPosition();
     });
   }
 
-  static #getNewPosition(currentPosition) {
-    const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
-    const isMoveForward = Race.#getIsMoveForward(randomNum);
+  #getWinnerCarArray() {
+    const maxPosition = this.#getmaxPosition();
 
-    if (isMoveForward) return currentPosition + Race.#FORWARD_STEP;
-    return currentPosition;
-  }
+    const winnerCarArray = this.#carModelArray
+      .filter((carModel) => carModel.position === maxPosition)
+      .map((carModel) => carModel.name);
 
-  static #getIsMoveForward(num) {
-    return num >= Race.#MOVE_FORWARD_THRESHOLD;
-  }
-
-  get #winnerCarArray() {
-    const maxTrace = getMaxValueInMap(this.#carTraceMap);
-    const winnerCarArray = getKeyArrayHasTargetValueInMap(
-      this.#carTraceMap,
-      maxTrace,
-    );
     return winnerCarArray;
+  }
+
+  #getmaxPosition() {
+    return Math.max(
+      ...this.#carModelArray.map((carModel) => carModel.position),
+    );
   }
 }
 
