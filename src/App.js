@@ -1,38 +1,22 @@
 import { OUTPUT_MESSAGE } from './lib/constants.js';
 import { print } from './lib/utils.js';
-import Input from './Input.js';
+import InputManager from './InputManager.js';
 import Race from './Race.js';
 
 class App {
-  #input;
-  #winnerCarArray;
-
-  constructor() {
-    this.#input = new Input();
-  }
-
   async run() {
-    await this.#getInput();
-    this.#runRace();
-    this.#printOutput();
+    const carArray = await InputManager.getCarsInput();
+    const tryCount = await InputManager.getTryCountInput();
+
+    const race = new Race(carArray, tryCount);
+
+    const winnerCarArray = race.run();
+
+    this.#printOutput(winnerCarArray);
   }
 
-  async #getInput() {
-    await this.#input.getCarsInput();
-    this.#input.parseCars();
-
-    await this.#input.getTryCountInput();
-    this.#input.parseTryCount();
-  }
-
-  #runRace() {
-    const race = new Race(this.#input.carArray, this.#input.tryCount);
-
-    this.#winnerCarArray = race.run();
-  }
-
-  #printOutput() {
-    print(`${OUTPUT_MESSAGE.WINNER}${this.#winnerCarArray.join(', ')}`);
+  #printOutput(winnerCarArray) {
+    print(`${OUTPUT_MESSAGE.WINNER}${winnerCarArray.join(', ')}`);
   }
 }
 
