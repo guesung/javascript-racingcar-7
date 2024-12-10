@@ -1,7 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 import { MOVE_STANDARD } from '../lib/constants.js';
-import OutputView from '../views/OutputView.js';
+import { OutputView } from '../views/index.js';
 
 export default class CarModel {
   name;

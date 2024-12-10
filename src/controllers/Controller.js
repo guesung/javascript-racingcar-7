@@ -1,34 +1,24 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
-
-import { MOVE_STANDARD } from '../lib/constants.js';
 import { CarModel } from '../models/index.js';
 import { InputView, OutputView } from '../views/index.js';
 
 export default class Controller {
-  #carNames;
-  #tryCount;
   #cars;
+  #tryCount;
 
   async init() {
-    this.#carNames = await InputView.readCars();
+    const carNames = await InputView.readCars();
     this.#tryCount = await InputView.readTryCount();
+
+    this.#cars = carNames.map((carName) => new CarModel(carName));
   }
 
   run() {
-    this.initialGame();
-    this.runGame();
+    this.startRace();
     const winners = this.getWinners();
     OutputView.printWinner(winners);
   }
 
-  initialGame() {
-    this.#cars = [];
-    for (const carName of this.#carNames) {
-      this.#cars.push(new CarModel(carName));
-    }
-  }
-
-  runGame() {
+  startRace() {
     for (let i = 0; i < this.#tryCount; i += 1) {
       this.runOneRound();
     }
