@@ -13,13 +13,17 @@ export default class CarModel {
   }
 
   go() {
-    const num = CarModel.getRaceRandomNumber();
-    if (num >= MOVE_STANDARD) this.position += 1;
+    const num = this.#getRaceRandomNumber();
+    if (num >= MOVE_STANDARD) this.#goForward();
 
     OutputView.printCarPosition(this.name, this.position);
   }
 
-  static getRaceRandomNumber() {
+  #getRaceRandomNumber() {
     return MissionUtils.Random.pickNumberInRange(0, 9);
+  }
+
+  #goForward() {
+    this.position += 1;
   }
 }
