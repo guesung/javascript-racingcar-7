@@ -1,15 +1,16 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 import { MOVE_STANDARD } from '../lib/constants.js';
+import { CarModel } from '../models/index.js';
 import { InputView, OutputView } from '../views/index.js';
 
 export default class Controller {
-  #cars;
+  #carNames;
   #tryCount;
-  #result;
+  #cars;
 
   async init() {
-    this.#cars = await InputView.readCars();
+    this.#carNames = await InputView.readCars();
     this.#tryCount = await InputView.readTryCount();
   }
 
@@ -20,37 +21,28 @@ export default class Controller {
     OutputView.printWinner(winners);
   }
 
+  initialGame() {
+    this.#cars = [];
+    for (const carName of this.#carNames) {
+      this.#cars.push(new CarModel(carName));
+    }
+  }
+
   runGame() {
     for (let i = 0; i < this.#tryCount; i += 1) {
-      this.runOneGame();
+      this.runOneRound();
     }
   }
 
-  initialGame() {
-    this.#result = {};
+  runOneRound() {
     for (const car of this.#cars) {
-      this.#result[car] = 0;
-    }
-  }
-
-  runOneGame() {
-    for (const car of this.#cars) {
-      const num = Controller.getRaceRandomNumber();
-      if (num >= MOVE_STANDARD) this.#result[car] += 1;
-
-      OutputView.printCarPosition(car, this.#result[car]);
+      car.go();
     }
     OutputView.printBlank();
   }
 
   getWinners() {
-    const winnerPosition = Math.max(...Object.values(this.#result));
-    return Object.entries(this.#result)
-      .filter(([_, position]) => position === winnerPosition)
-      .map(([name]) => name);
-  }
-
-  static getRaceRandomNumber() {
-    return MissionUtils.Random.pickNumberInRange(0, 9);
+    const winnerPosition = Math.max(...this.#cars.map((car) => car.position));
+    return this.#cars.filter((car) => car.position === winnerPosition).map((car) => car.name);
   }
 }
