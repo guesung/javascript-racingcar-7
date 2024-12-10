@@ -1,14 +1,18 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-import { OUTPUT_MESSAGE } from '../lib/constants.js';
+import { CAR_POSITION, OUTPUT_MESSAGE } from '../lib/constants.js';
 
 export default class OutputView {
   static printBlank() {
     this.#print('');
   }
 
-  static printExample() {
-    this.#print(OUTPUT_MESSAGE.example);
+  static printCarPosition(car, position) {
+    this.#print(`${car} : ${CAR_POSITION.repeat(position)}`);
+  }
+
+  static printWinner(winners) {
+    this.#print(`${OUTPUT_MESSAGE.winner}${winners.join(', ')}`);
   }
 
   static #print(message) {
