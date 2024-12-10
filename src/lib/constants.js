@@ -16,3 +16,4 @@ export const ERROR_MESSAGE = {
 
 export const SEPARATOR = ',';
 export const CAR_POSITION = '-';
+export const MOVE_STANDARD = 4;
