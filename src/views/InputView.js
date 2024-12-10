@@ -4,12 +4,20 @@ import { InputParser, InputValidator } from '../helpers/index.js';
 import { INPUT_MESSAGE } from '../lib/constants.js';
 
 export default class InputView {
-  static async readExample() {
-    const rawInput = await this.#readLineAsync(INPUT_MESSAGE.example);
-    const input = InputParser.parseUserInput(rawInput);
-    InputValidator.validateUserInput(input);
+  static async readCars() {
+    const rawInput = await this.#readLineAsync(INPUT_MESSAGE.carName);
+    const carNames = InputParser.parseCarNames(rawInput);
+    InputValidator.validateCarNames(carNames);
 
-    return input;
+    return carNames;
+  }
+
+  static async readTryCount() {
+    const rawTryCount = await this.#readLineAsync(INPUT_MESSAGE.tryCount);
+    const tryCount = InputParser.parseTryCount(rawTryCount);
+    InputValidator.validateTryCount(tryCount);
+
+    return tryCount;
   }
 
   static #readLineAsync(message) {
