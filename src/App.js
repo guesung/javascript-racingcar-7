@@ -1,5 +1,10 @@
+import { Controller } from './controllers/index.js';
+
 class App {
-  async run() {}
+  async run() {
+    const controller = new Controller();
+    await controller.init();
+  }
 }
 
 export default App;
